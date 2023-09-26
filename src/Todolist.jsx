@@ -13,19 +13,19 @@ export default function Todolist() { // komponentti
     const addTodo = () => // lisätään todo listaan
         setTodos([...todos, todo])
 
-    // const deleteTodo = (index) => { // poistetaan todo listasta
-    //     setTodos(todos.filter((todo, i) => i !== index))
-    // }
+    const deleteTodo = (index) => { // poistetaan todo listasta
+        setTodos(todos.filter((todo, i) => i !== index))
+    }
 
     const itemRows = todos.map((todo, index) => // renderöidään lista
         <tr key={index}>
             <td>{todo.description}</td>
             <td>{todo.date}</td>
-            {/* <td>
+            <td>
                 <button onClick={() =>
                     deleteTodo(index)}>Delete
                 </button>
-            </td> */}
+            </td>
         </tr>
     )
 
