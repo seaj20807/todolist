@@ -1,4 +1,5 @@
 import { useState } from "react"
+import TodoTable from "./components/TodoTable"
 
 export default function Todolist() { // komponentti
     // states
@@ -7,7 +8,6 @@ export default function Todolist() { // komponentti
 
     // functions
     const handleInputChanged = (event) => // otetaan arvot input kentistä ja asetetaan ne todo-muuttujaan
-        //setTodo({ ...todo, description: event.target.value })
         setTodo({ ...todo, [event.target.name]: event.target.value })
 
     const addTodo = () => // lisätään todo listaan
@@ -16,18 +16,6 @@ export default function Todolist() { // komponentti
     const deleteTodo = (index) => { // poistetaan todo listasta
         setTodos(todos.filter((todo, i) => i !== index))
     }
-
-    const itemRows = todos.map((todo, index) => // renderöidään lista
-        <tr key={index}>
-            <td>{todo.description}</td>
-            <td>{todo.date}</td>
-            <td>
-                <button onClick={() =>
-                    deleteTodo(index)}>Delete
-                </button>
-            </td>
-        </tr>
-    )
 
     //return
     return (
@@ -48,12 +36,11 @@ export default function Todolist() { // komponentti
             <button onClick={addTodo}>
                 Add
             </button>
-            <table>
-                <tbody>
-                    {itemRows}
-                </tbody>
-            </table>
+
+            <TodoTable todos={todos} onDelete={deleteTodo} />
+
         </>
+
     )
 
 }
