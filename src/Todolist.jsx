@@ -39,6 +39,7 @@ export default function Todolist() { // komponentti
                 value={todo.priority}
                 onChange={handleInputChanged}
             >
+                <option>Select</option>
                 <option>High</option>
                 <option>Medium</option>
                 <option>Low</option>
