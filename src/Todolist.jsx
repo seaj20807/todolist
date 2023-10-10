@@ -1,12 +1,13 @@
 import { useState } from "react"
-import TodoTable from "./components/TodoTable"
+import TodoGrid from "./components/TodoGrid"
+//import TodoTable from "./components/TodoTable"
 
 export default function Todolist() { // komponentti
-    // states
+    // States
     const [todos, setTodos] = useState([])
-    const [todo, setTodo] = useState({ description: '', date: '' })// useState('')
+    const [todo, setTodo] = useState({ description: '', date: '', priority: '' })// useState('')
 
-    // functions
+    // Functions
     const handleInputChanged = (event) => // otetaan arvot input kentistä ja asetetaan ne todo-muuttujaan
         setTodo({ ...todo, [event.target.name]: event.target.value })
 
@@ -17,7 +18,7 @@ export default function Todolist() { // komponentti
         setTodos(todos.filter((todo, i) => i !== index))
     }
 
-    //return
+    // Return
     return (
         <>
             <h1>Todo list</h1>
@@ -33,11 +34,25 @@ export default function Todolist() { // komponentti
                 value={todo.date}
                 onChange={handleInputChanged}
             />
+            <select
+                name="priority"
+                value={todo.priority}
+                onChange={handleInputChanged}
+            >
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
             <button onClick={addTodo}>
                 Add
             </button>
 
-            <TodoTable todos={todos} onDelete={deleteTodo} />
+            <TodoGrid
+                todos={todos}
+                deleteTodo={deleteTodo}
+            />
+
+            {/* <TodoTable todos={todos} onDelete={deleteTodo} /> */}
 
         </>
 
