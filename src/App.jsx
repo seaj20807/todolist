@@ -17,8 +17,8 @@ export default function App() {
     // <Todolist />
     <div>
       <Tabs value={value} onChange={handleChange}>
-        <Tab value="home" label="Home Page" />
-        <Tab value="todo" label="Todo List" />
+        <Tab value="home" label="Home" />
+        <Tab value="todo" label="Todos" />
       </Tabs>
       {value === "home" && <Home />}
       {value === "todo" && <Todolist />}

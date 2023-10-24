@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react'
+import { useRef } from 'react'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Select from '@mui/material/Select'
@@ -25,6 +26,18 @@ export default function Todolist() { // komponentti
 
     const deleteTodo = (index) => { // poistetaan todo listasta
         setTodos(todos.filter((todo, i) => i !== index))
+    }
+
+    // gridRef
+    const gridRef = useRef()
+
+    const deleteSelected = () => {
+        if (gridRef.current.getSelectedNodes().length == 0) {
+            alert("Choose a row first!")
+        } else {
+            const removeIndex = parseInt(gridRef.current.getSelectedNodes()[0].id)
+            deleteTodo(removeIndex)
+        }
     }
 
     // Return
@@ -62,15 +75,21 @@ export default function Todolist() { // komponentti
                     </Select>
                 </FormControl>
                 <Button
-                    onClick={addTodo}
-                    variant="contained">
+                    variant="contained"
+                    onClick={addTodo}>
                     Add
+                </Button>
+                <Button
+                    variant="contained"
+                    onClick={deleteSelected}>
+                    Remove
                 </Button>
             </Stack>
 
             <TodoGrid
                 todos={todos}
                 deleteTodo={deleteTodo}
+                gridRef={gridRef}
             />
 
             {/* <TodoTable todos={todos} onDelete={deleteTodo} /> */}
