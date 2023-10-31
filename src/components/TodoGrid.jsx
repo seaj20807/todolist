@@ -16,7 +16,7 @@ export default function TodoGrid(props) {
 
     return (
         <>
-            <div className="ag-theme-material"
+            <div data-testid="table" className="ag-theme-material"
                 style={{ height: '700px', width: '100%', margin: 'auto' }}>
                 <AgGridReact
                     rowData={props.todos}

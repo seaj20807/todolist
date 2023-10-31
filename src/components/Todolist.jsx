@@ -18,14 +18,24 @@ export default function Todolist() { // komponentti
     const [todo, setTodo] = useState({ description: '', date: '', priority: '' })// useState('')
 
     // Functions
-    const handleInputChanged = (event) => // otetaan arvot input kentistä ja asetetaan ne todo-muuttujaan
+
+    // Read the input field values and set them to the todo-variable
+    const handleInputChanged = (event) =>
         setTodo({ ...todo, [event.target.name]: event.target.value })
 
-    const addTodo = () => // lisätään todo listaan
+    // Add a todo to list
+    const addTodo = () =>
         setTodos([...todos, todo])
 
-    const deleteTodo = (index) => { // poistetaan todo listasta
+    // Remove a todo from the list
+    const deleteTodo = (index) => {
         setTodos(todos.filter((todo, i) => i !== index))
+    }
+
+    // Remove all todos from the list
+    const clearTodos = () => {
+        setTodos(todos.splice())
+        // setTodos(todos.toSpliced(0)) Testit eivät tunnista funktioksi...
     }
 
     // gridRef
@@ -84,6 +94,11 @@ export default function Todolist() { // komponentti
                     onClick={deleteSelected}>
                     Remove
                 </Button>
+                <Button
+                    variant="contained"
+                    onClick={clearTodos}>
+                    Clear
+                </Button>
             </Stack>
 
             <TodoGrid
@@ -91,8 +106,6 @@ export default function Todolist() { // komponentti
                 deleteTodo={deleteTodo}
                 gridRef={gridRef}
             />
-
-            {/* <TodoTable todos={todos} onDelete={deleteTodo} /> */}
 
         </>
 

@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
 import Home from './components/Home'
+import About from './components/About'
+import Contact from './components/Contact'
 import Todolist from './components/Todolist'
 
 export default function App() {
@@ -15,12 +17,16 @@ export default function App() {
 
   return (
     // <Todolist />
-    <div>
+    <div className="App">
       <Tabs value={value} onChange={handleChange}>
         <Tab value="home" label="Home" />
+        <Tab value="about" label="About" />
+        <Tab value="contact" label="Contact" />
         <Tab value="todo" label="Todos" />
       </Tabs>
       {value === "home" && <Home />}
+      {value === "about" && <About />}
+      {value === "contact" && <Contact />}
       {value === "todo" && <Todolist />}
     </div>
   )

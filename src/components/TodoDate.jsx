@@ -5,17 +5,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 import 'dayjs/locale/fi';
 
-const locales = ['fi'];
-
 export default function TodoDate(props) {
 
-    const [locale, setLocale] = React.useState('fi');
-
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={locale}>
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fi">
             <DatePicker
-                value={props.todo.date}
-                onChange={newDate => props.setTodo({ ...props.todo, date: newDate.$d.toLocaleDateString("fi") })} />
+                value={dayjs(props.todo.date).format("DD.MM.YYYY")}
+                onChange={newDate => props.setTodo({ ...props.todo, date: newDate.format("DD.MM.YYYY") })} />
         </LocalizationProvider>
     )
+
 }
